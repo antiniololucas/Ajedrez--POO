@@ -36,7 +36,6 @@ namespace Ajedrez.Utilities
                     contador = 0;
                 }
             }
-           
         }
 
         public int buscarLetra(string filaPiezaElegida)
@@ -55,7 +54,6 @@ namespace Ajedrez.Utilities
             }
         }
 
-
         public bool validarTurno(Piezas pieza, bool juegaBlanco)
         {
             if (juegaBlanco && pieza.SonBlancas || !juegaBlanco && !pieza.SonBlancas)
@@ -65,6 +63,6 @@ namespace Ajedrez.Utilities
             return false;
         }
 
-        
+
     }
 }

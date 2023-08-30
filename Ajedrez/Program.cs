@@ -65,14 +65,15 @@ namespace Ajedrez
                 ColumnaDestino = gestor.buscarLetra(Console.ReadLine().ToLower());
                 tablero[FilaPiezaElegida, columnaPiezaElegida].ColumnaDestino = ColumnaDestino;
 
-                validarMovimiento();
+                efectuarMovimiento();
             }
 
-            void validarMovimiento()
+            void efectuarMovimiento()
             {
                 if (!tablero[FilaPiezaElegida, columnaPiezaElegida].mover(tablero))
                 {
                     Console.WriteLine("Movimiento incorrecto");
+                    pedirMovimiento();
                 }
                 tablero[FilaDestino, ColumnaDestino] = tablero[FilaPiezaElegida, columnaPiezaElegida];
                 tablero[FilaPiezaElegida, columnaPiezaElegida] = null;
