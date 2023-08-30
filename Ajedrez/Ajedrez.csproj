@@ -49,6 +49,7 @@
     <Compile Include="Models\Reina.cs" />
     <Compile Include="Models\Rey.cs" />
     <Compile Include="Models\Torre.cs" />
+    <Compile Include="Utilities\GestorJuego.cs" />
     <Compile Include="Utilities\Imover.cs" />
     <Compile Include="Utilities\Piezas.cs" />
     <Compile Include="Program.cs" />

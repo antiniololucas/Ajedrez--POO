@@ -20,5 +20,10 @@ namespace Ajedrez.Models
             }
             return "\u265C";
         }
+
+        public override bool mover(Piezas[,] tablero)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
