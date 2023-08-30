@@ -46,12 +46,14 @@ namespace Ajedrez
                 try
                 {
                     FilaPiezaElegida = int.Parse(Console.ReadLine()) - 1;
+                    validarFila(FilaPiezaElegida);
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Formato incorrecto, intente de nuevo"); 
+                    Console.WriteLine("Formato incorrecto, intente de nuevo");
                     pedirMovimiento();
                 }
+
                 Console.WriteLine("Ingrese letra de columna de pieza a mover");
                 columnaPiezaElegida = gestor.buscarLetra(Console.ReadLine().ToLower());
                 validarColumna(columnaPiezaElegida);
@@ -69,6 +71,7 @@ namespace Ajedrez
                 try
                 {
                     FilaDestino = int.Parse(Console.ReadLine()) - 1;
+                    validarFila(FilaDestino);
                     piezaActual.FilaDestino = FilaDestino;
                 }
                 catch (Exception)
@@ -117,6 +120,14 @@ namespace Ajedrez
                 }
             }
 
+            void validarFila(int fila)
+            {
+                if(fila < 0 || fila > 7)
+                {
+                    Console.WriteLine("numero de fila incorrecto, intente de nuevo");
+                    pedirMovimiento();
+                }
+            }
             void validarColumna(int columna)
             {
                 if (columna == 99)
@@ -139,7 +150,7 @@ namespace Ajedrez
 
             void esRey()
             {
-                if (tablero[FilaDestino, ColumnaDestino].esRey)
+                if (tablero[FilaDestino, ColumnaDestino] != null && tablero[FilaDestino, ColumnaDestino].esRey)
                 {
                     FinJuego = true;
                 }
