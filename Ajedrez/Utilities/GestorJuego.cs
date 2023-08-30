@@ -21,7 +21,7 @@ namespace Ajedrez.Utilities
                 contador++;
                 if (pieza != null)
                 {
-                    Console.Write("|" + pieza.devolverCodigo() + "\t");
+                    Console.Write("|" + pieza.DevolverCodigo() + "\t");
                 }
                 else
                 {

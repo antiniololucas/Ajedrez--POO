@@ -12,7 +12,7 @@ namespace Ajedrez.Models
         {
             this.SonBlancas = validacion;
         }
-        public override string devolverCodigo()
+        public override string DevolverCodigo()
         {
             if (SonBlancas)
             {

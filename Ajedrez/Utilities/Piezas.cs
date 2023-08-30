@@ -9,7 +9,7 @@ namespace Ajedrez.Models
 {
     public abstract class Piezas : Imover
     {
-        public abstract string devolverCodigo();
+        public abstract string DevolverCodigo();
 
         public abstract bool mover(Piezas[,] tablero);
 

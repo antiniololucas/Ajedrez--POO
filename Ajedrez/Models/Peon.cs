@@ -13,7 +13,7 @@ namespace Ajedrez.Models
             this.SonBlancas = validacion;
         }
         
-        public override string devolverCodigo()
+        public override string DevolverCodigo()
         {
             return SonBlancas ? "\u2659" : "\u265F";
         }
