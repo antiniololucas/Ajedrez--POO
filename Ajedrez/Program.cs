@@ -34,7 +34,7 @@ namespace Ajedrez
             int FilaDestino = 0;
             int ColumnaDestino = 0;
             Piezas piezaActual;
-
+            bool FinJuego = false;
 
             gestor.escribirTablero(tablero);
             pedirMovimiento();
@@ -43,13 +43,14 @@ namespace Ajedrez
             void pedirMovimiento()
             {
                 Console.WriteLine("\n\n Ingrese numero de fila de pieza a mover");
-                try 
-                { 
-                    FilaPiezaElegida = int.Parse(Console.ReadLine()) - 1; 
+                try
+                {
+                    FilaPiezaElegida = int.Parse(Console.ReadLine()) - 1;
                 }
-                catch (Exception ex) 
-                { 
-                    Console.WriteLine("Formato incorrecto, intente de nuevo"); pedirMovimiento(); 
+                catch (Exception)
+                {
+                    Console.WriteLine("Formato incorrecto, intente de nuevo"); 
+                    pedirMovimiento();
                 }
                 Console.WriteLine("Ingrese letra de columna de pieza a mover");
                 columnaPiezaElegida = gestor.buscarLetra(Console.ReadLine().ToLower());
@@ -60,7 +61,7 @@ namespace Ajedrez
                 piezaActual = tablero[FilaPiezaElegida, columnaPiezaElegida];
 
                 validarTurno();
-                
+
                 piezaActual.FilaOrigen = FilaPiezaElegida;
                 piezaActual.ColumnaOrigen = columnaPiezaElegida;
 
@@ -70,10 +71,10 @@ namespace Ajedrez
                     FilaDestino = int.Parse(Console.ReadLine()) - 1;
                     piezaActual.FilaDestino = FilaDestino;
                 }
-                catch (Exception ex) 
-                { 
+                catch (Exception)
+                {
                     Console.WriteLine("Formato incorrecto, intente de nuevo");
-                    pedirMovimiento(); 
+                    pedirMovimiento();
                 }
 
                 Console.WriteLine("Ingrese letra de columna de destino de la pieza");
@@ -82,6 +83,7 @@ namespace Ajedrez
 
                 piezaActual.ColumnaDestino = ColumnaDestino;
 
+                esRey();
                 efectuarMovimiento();
             }
 
@@ -94,8 +96,15 @@ namespace Ajedrez
                 }
                 tablero[FilaDestino, ColumnaDestino] = tablero[FilaPiezaElegida, columnaPiezaElegida];
                 tablero[FilaPiezaElegida, columnaPiezaElegida] = null;
-                juegaBlanco = !juegaBlanco;
+
                 gestor.escribirTablero(tablero);
+
+                if (FinJuego)
+                {
+                    finalizarJuego();
+                    return;
+                }
+                juegaBlanco = !juegaBlanco;
                 pedirMovimiento();
             }
 
@@ -121,11 +130,35 @@ namespace Ajedrez
             {
                 if (juegaBlanco && !piezaActual.SonBlancas || !juegaBlanco && piezaActual.SonBlancas)
                 {
-                Console.WriteLine("Turno contrario");
-                pedirMovimiento();
+                    Console.WriteLine("Turno contrario");
+                    pedirMovimiento();
                 }
+            }
+
+
+
+            void esRey()
+            {
+                if (tablero[FilaDestino, ColumnaDestino].esRey)
+                {
+                    FinJuego = true;
+                }
+            }
+
+            void finalizarJuego()
+            {
+                if (juegaBlanco)
+                {
+                    Console.WriteLine("Fin del juego, Ganador : Jugador blancas");
+                    Console.ReadKey();
+                    return;
+                }
+                Console.WriteLine("Fin del juego, Ganador : Jugador negras");
+                Console.ReadKey();
+               
             }
 
         }
     }
-}
+        
+ }

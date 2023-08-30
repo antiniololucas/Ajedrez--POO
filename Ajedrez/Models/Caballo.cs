@@ -24,7 +24,39 @@ namespace Ajedrez.Models
 
         public override bool mover(Piezas[,] tablero)
         {
-            throw new NotImplementedException();
+            if (tablero[FilaDestino, ColumnaDestino] != null)
+            {
+                if (!validarComer(tablero)) return false;
+            }
+
+            if (Math.Max(FilaOrigen,FilaDestino) - Math.Min(FilaOrigen,FilaDestino) == 1)
+            {
+               return validacionPrimerMov();
+            }
+
+            if(Math.Max(FilaOrigen, FilaDestino) - Math.Min(FilaOrigen, FilaDestino) == 2)
+            {
+                return validacionSegundoMov();
+            }
+            return false;
+        }
+
+        private bool validacionSegundoMov()
+        {
+            if (ColumnaDestino - ColumnaOrigen == 1 || ColumnaDestino - ColumnaOrigen == -1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool validacionPrimerMov()
+        {
+            if (ColumnaDestino - ColumnaOrigen == 2 || ColumnaDestino - ColumnaOrigen == -2)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Ajedrez.Models
         public Rey(bool validacion)
         {
             this.SonBlancas = validacion;
+            esRey = true;
         }
 
         public override string DevolverCodigo()

@@ -23,20 +23,11 @@ namespace Ajedrez.Models
             return SonBlancas ? movimientoBlanco(tablero) : movimientoNegro(tablero);
         }
 
-        private bool validarComer(Piezas[,]tablero)
-        {
-            if( this.SonBlancas == tablero[FilaDestino, ColumnaDestino].SonBlancas)
-            {
-                return false;
-            }
-            return true;
-        }
-
         private bool movimientoNegro(Piezas[,] tablero)
         {
             if (tablero[FilaDestino, ColumnaDestino] != null)
             {
-               return validarComer(tablero) ? comerNegro(tablero) : false;
+               return validarComer(tablero) ? comerNegro() : false;
             }
 
             if (ColumnaOrigen != ColumnaDestino || FilaDestino - FilaOrigen != 1)
@@ -46,7 +37,7 @@ namespace Ajedrez.Models
             return true;
         }
 
-        private bool comerNegro(Piezas[,] tablero)
+        private bool comerNegro()
         {
             if (FilaDestino - FilaOrigen != 1 || ColumnaDestino.CompareTo(ColumnaOrigen) > 1)
             {
@@ -59,7 +50,7 @@ namespace Ajedrez.Models
         {
             if (tablero[FilaDestino, ColumnaDestino] != null)
             {
-                return validarComer(tablero) ? comerBlanco(tablero) : false;
+                return validarComer(tablero) ? comerBlanco() : false;
             }
             if (ColumnaOrigen != ColumnaDestino || FilaOrigen - FilaDestino != 1)
             {
@@ -69,7 +60,7 @@ namespace Ajedrez.Models
             return true;
         }
 
-        private bool comerBlanco(Piezas[,] tablero)
+        private bool comerBlanco()
         {
             if (FilaOrigen - FilaDestino != 1 || ColumnaDestino.CompareTo(ColumnaOrigen) > 1)
             {

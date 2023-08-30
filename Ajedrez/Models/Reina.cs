@@ -103,15 +103,6 @@ namespace Ajedrez.Models
             return true;
         }
 
-        private bool validarComer(Piezas[,] tablero)
-        {
-            if (tablero[FilaDestino, ColumnaDestino].SonBlancas == this.SonBlancas)
-            {
-                return false;
-            }
-            return true;
-        }
-
         private bool movimientoVertical(Piezas[,] tablero)
         {
             for (int i = Math.Min(ColumnaOrigen, ColumnaDestino); i < Math.Max(ColumnaOrigen, ColumnaDestino); i++)

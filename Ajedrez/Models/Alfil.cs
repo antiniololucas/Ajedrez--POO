@@ -93,13 +93,6 @@ namespace Ajedrez.Models
             return true;
         }
 
-        private bool validarComer(Piezas[,] tablero)
-        {
-            if (tablero[FilaDestino, ColumnaDestino].SonBlancas == this.SonBlancas)
-            {
-                return false;
-            }
-            return true;
-        }
+       
     }
 }

@@ -18,5 +18,15 @@ namespace Ajedrez.Models
         public int ColumnaOrigen { get; set; }
         public int FilaDestino { get; set; }
         public int ColumnaDestino { get; set; }
+        public bool esRey {  get; set; }
+
+        public bool validarComer(Piezas[,] tablero)
+        {
+            if (tablero[FilaDestino, ColumnaDestino].SonBlancas == this.SonBlancas)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
