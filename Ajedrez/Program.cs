@@ -33,6 +33,7 @@ namespace Ajedrez
             int columnaPiezaElegida = 0;
             int FilaDestino = 0;
             int ColumnaDestino = 0;
+            Piezas piezaActual;
 
 
             gestor.escribirTablero(tablero);
@@ -42,35 +43,51 @@ namespace Ajedrez
             void pedirMovimiento()
             {
                 Console.WriteLine("\n\n Ingrese numero de fila de pieza a mover");
-                FilaPiezaElegida = int.Parse(Console.ReadLine()) - 1;
-
+                try 
+                { 
+                    FilaPiezaElegida = int.Parse(Console.ReadLine()) - 1; 
+                }
+                catch (Exception ex) 
+                { 
+                    Console.WriteLine("Formato incorrecto, intente de nuevo"); pedirMovimiento(); 
+                }
                 Console.WriteLine("Ingrese letra de columna de pieza a mover");
                 columnaPiezaElegida = gestor.buscarLetra(Console.ReadLine().ToLower());
+                validarColumna(columnaPiezaElegida);
 
-                if (!gestor.validarTurno(tablero[FilaPiezaElegida, columnaPiezaElegida], juegaBlanco))
-                {
-                    Console.WriteLine("Turno contrario");
-                    pedirMovimiento();
-                }
+                validarPieza();
 
-                tablero[FilaPiezaElegida, columnaPiezaElegida].FilaOrigen = FilaPiezaElegida;
-                tablero[FilaPiezaElegida, columnaPiezaElegida].ColumnaOrigen = columnaPiezaElegida;
+                piezaActual = tablero[FilaPiezaElegida, columnaPiezaElegida];
 
+                validarTurno();
+                
+                piezaActual.FilaOrigen = FilaPiezaElegida;
+                piezaActual.ColumnaOrigen = columnaPiezaElegida;
 
                 Console.WriteLine("Ingrese numero de fila de destino de la pieza");
-                FilaDestino = int.Parse(Console.ReadLine()) - 1;
-                tablero[FilaPiezaElegida, columnaPiezaElegida].FilaDestino = FilaDestino;
+                try
+                {
+                    FilaDestino = int.Parse(Console.ReadLine()) - 1;
+                    piezaActual.FilaDestino = FilaDestino;
+                }
+                catch (Exception ex) 
+                { 
+                    Console.WriteLine("Formato incorrecto, intente de nuevo");
+                    pedirMovimiento(); 
+                }
 
                 Console.WriteLine("Ingrese letra de columna de destino de la pieza");
                 ColumnaDestino = gestor.buscarLetra(Console.ReadLine().ToLower());
-                tablero[FilaPiezaElegida, columnaPiezaElegida].ColumnaDestino = ColumnaDestino;
+                validarColumna(ColumnaDestino);
+
+                piezaActual.ColumnaDestino = ColumnaDestino;
 
                 efectuarMovimiento();
             }
 
             void efectuarMovimiento()
             {
-                if (!tablero[FilaPiezaElegida, columnaPiezaElegida].mover(tablero))
+                if (!piezaActual.mover(tablero))
                 {
                     Console.WriteLine("Movimiento incorrecto");
                     pedirMovimiento();
@@ -80,6 +97,33 @@ namespace Ajedrez
                 juegaBlanco = !juegaBlanco;
                 gestor.escribirTablero(tablero);
                 pedirMovimiento();
+            }
+
+            void validarPieza()
+            {
+                if (tablero[FilaPiezaElegida, columnaPiezaElegida] == null)
+                {
+                    Console.WriteLine("Posicion vacia, intente de nuevo");
+                    pedirMovimiento();
+                }
+            }
+
+            void validarColumna(int columna)
+            {
+                if (columna == 99)
+                {
+                    Console.WriteLine("Formato incorrecto, intente de nuevo");
+                    pedirMovimiento();
+                }
+            }
+
+            void validarTurno()
+            {
+                if (juegaBlanco && !piezaActual.SonBlancas || !juegaBlanco && piezaActual.SonBlancas)
+                {
+                Console.WriteLine("Turno contrario");
+                pedirMovimiento();
+                }
             }
 
         }

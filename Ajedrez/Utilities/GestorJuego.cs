@@ -54,15 +54,9 @@ namespace Ajedrez.Utilities
             }
         }
 
-        public bool validarTurno(Piezas pieza, bool juegaBlanco)
-        {
-            if (juegaBlanco && pieza.SonBlancas || !juegaBlanco && !pieza.SonBlancas)
-            {
-                return true;
-            }
-            return false;
-        }
 
+        
 
+        
     }
 }

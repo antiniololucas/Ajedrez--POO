@@ -36,7 +36,7 @@ namespace Ajedrez.Models
         {
             if (tablero[FilaDestino, ColumnaDestino] != null)
             {
-               return validarComer(tablero) ? comerBlanco(tablero) : false;
+               return validarComer(tablero) ? comerNegro(tablero) : false;
             }
 
             if (ColumnaOrigen != ColumnaDestino || FilaDestino - FilaOrigen != 1)
@@ -59,7 +59,7 @@ namespace Ajedrez.Models
         {
             if (tablero[FilaDestino, ColumnaDestino] != null)
             {
-                return validarComer(tablero) ? comerNegro(tablero) : false;
+                return validarComer(tablero) ? comerBlanco(tablero) : false;
             }
             if (ColumnaOrigen != ColumnaDestino || FilaOrigen - FilaDestino != 1)
             {

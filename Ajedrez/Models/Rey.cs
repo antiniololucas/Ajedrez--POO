@@ -24,7 +24,15 @@ namespace Ajedrez.Models
 
         public override bool mover(Piezas[,] tablero)
         {
-            throw new NotImplementedException();
+            if(Math.Max(FilaDestino, FilaOrigen).CompareTo(Math.Min(FilaOrigen, FilaDestino)) != 1 || Math.Max(ColumnaOrigen,ColumnaDestino).CompareTo(Math.Min(ColumnaOrigen,ColumnaDestino)) > 1)
+            {
+                return false;
+            }
+            if (tablero[FilaDestino, ColumnaDestino]!= null && tablero[FilaDestino,ColumnaDestino].SonBlancas == this.SonBlancas)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
