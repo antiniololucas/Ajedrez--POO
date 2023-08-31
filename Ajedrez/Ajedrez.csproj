@@ -49,11 +49,15 @@
     <Compile Include="Models\Reina.cs" />
     <Compile Include="Models\Rey.cs" />
     <Compile Include="Models\Torre.cs" />
-    <Compile Include="Utilities\GestorJuego.cs" />
+    <Compile Include="Utilities\EscribirTablero.cs" />
+    <Compile Include="Utilities\FinJuego.cs" />
     <Compile Include="Utilities\Imover.cs" />
+    <Compile Include="Utilities\IniciaJuego.cs" />
+    <Compile Include="Utilities\Movimiento.cs" />
     <Compile Include="Utilities\Piezas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Validaciones.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
